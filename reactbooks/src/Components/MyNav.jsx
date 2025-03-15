@@ -1,9 +1,11 @@
+import React from 'react'
 import { Navbar, Container, Nav } from 'react-bootstrap';
 
 const MyNav = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark" sticky="top">
-      <Container>
+    <header sticky="top">
+    <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
+      <Container fluid>
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -15,6 +17,7 @@ const MyNav = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </header>
   );
 };
 
