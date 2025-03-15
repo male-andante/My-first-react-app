@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-import history from './data/books/history.json'
+import history from '../data/books/history.json'
 
 
 
