@@ -9,7 +9,7 @@ export default function SingleBook({ title, img, price, category }) {
                 <Card.Title>{title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{category}</Card.Subtitle>
                 <Card.Text>€{price}</Card.Text>
-                <Button variant="primary" className="mt-auto">Leggilo</Button>
+                <Button variant="primary" className="mt-auto" onClick={() => selectBook(b)}>Leggilo</Button>
             </Card.Body>
         </Card>
     )
