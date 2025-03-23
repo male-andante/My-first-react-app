@@ -1,29 +1,24 @@
 import React from 'react'
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
+import SingleBook from './SingleBook'
 import history from '../data/books/history.json'
-
-
 
 export default function AllTheBooks() {
     return (
-    
-            <Container>
-                <Row>
-                {history.map(({ title, img, price, category }, index) => (
-                    <Col key={index} md={4} lg={3} className="mb-4">
-                        <Card>
-                            <Card.Img variant="top" src={img} />
-                            <Card.Body>
-                                <Card.Title>{title}</Card.Title>
-                                <Card.Subtitle className="text-muted">{category}</Card.Subtitle>
-                                <Card.Text>€{price}</Card.Text>
-                                <Button variant="primary">Leggilo</Button>
-                            </Card.Body>
-                        </Card>
+        <Container className='my-3'>
+            <Row>
+                {history.map(({title, img, price, category, asin}) => (
+                    <Col key={asin} xs={12} sm={6} md={4} lg={3} className="mb-4">
+                        <SingleBook
+                            title={title}
+                            img={img}
+                            price={price}
+                            category={category}
+                        />
                     </Col>
                 ))}
-                </Row>
-            </Container>
-        )
-    }
+            </Row>
+        </Container>
+    )
+}
 
