@@ -1,28 +1,37 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import SingleBook from './SingleBook'
 import history from '../data/books/history.json'
 
 export default function AllTheBooks() {
+    const [searchQuery, setSearchQuery] = useState('')
 
-    const [book, setBook] = useState()
-
-    const handleChange = (e) => {
-        console.log(e.target.name, e.target.value)
-        setBook({
-              ...book, 
-              [e.target.name] : e.target.value
-            })
-      } 
+    const filterBooks = () => {
+        // Se l'input è vuoto, mostra tutti i libri
+        if (!searchQuery) {
+            return history
+        }
+        // Altrimenti filtra i libri in base al titolo
+        return history.filter((book) => 
+            book.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+    }
 
     return (
         <Container className='my-3'>
-            <Row>
+            <Row className='my-3'>
                 <Col>
-                <Form.Control type="text" placeholder="filtra per titolo" onChange={handleChange} />
+                    <Form.Control 
+                        type="text" 
+                        placeholder="Filtra per titolo" 
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)} 
+                    />
                 </Col>
-                {history.map(({title, img, price, category, asin}) => (
+            </Row>
+            <Row>
+                {filterBooks().map(({ title, img, price, category, asin }) => (
                     <Col key={asin} xs={12} sm={6} md={4} lg={3} className="mb-4">
                         <SingleBook
                             title={title}
