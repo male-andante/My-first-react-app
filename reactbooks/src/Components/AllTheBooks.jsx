@@ -5,7 +5,7 @@ import SingleBook from './SingleBook'
 import history from '../data/books/history.json'
 
 export default function AllTheBooks() {
-    const [searchQuery, setSearchQuery] = useState('')
+    const [searchQuery, setSearchQuery] = useState('') // Questo è lo stato che devo elevare in APP.
 
     const filterBooks = () => {
         // Se l'input è vuoto, mostra tutti i libri
@@ -14,12 +14,12 @@ export default function AllTheBooks() {
         }
         // Altrimenti filtra i libri in base al titolo
         return history.filter((book) => 
-            book.title.toLowerCase().includes(searchQuery.toLowerCase())
+            book.title.toLowerCase().includes(searchQuery.toLowerCase().trim)
         )
     }
 
     return (
-        <Container className='my-3'>
+        <Container className='my-3'>   {/* Questo è l'input di ricerca che devo spostare in NAV e per cui devo elevare lo stato i App e passarlo in allthebook come prop*/}
             <Row className='my-3'>
                 <Col>
                     <Form.Control 
