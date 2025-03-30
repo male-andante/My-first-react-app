@@ -3,28 +3,28 @@ import { Container, Spinner} from 'react-bootstrap'
 import ListComments from './ListComments'
 import AddComment from './AddComment'
 
-export default function CommentArea({ asin }) {
+const baseUrl = 'https://striveschool-api.herokuapp.com/api/books'
 
+export default function CommentArea({ asin }) {
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
-
-    //const getUrl = "https://striveschool-api.herokuapp.com/api/books" //asin/comments/
+    const [asin, setAsin] = useState('')
 
     useEffect(() => {
         getComments()
     }, [asin])
 
     const getComments = async () => {
-        
-
         try {
             setIsLoading(true)
-            const response = await fetch(`https://striveschool-api.herokuapp.com/api/books/:${asin}/comments`)
+            const response = await fetch(`${baseUrl}/${asin}/comments/`
+            )
             if (response.ok) {
                 const data = await response.json()
                 setComments(data)
                 setError(null)
+                setAsin(asin)
             } else {
                 setError('Errore nel caricamento dei commenti')
             }
@@ -49,7 +49,7 @@ export default function CommentArea({ asin }) {
                 <span className="visually-hidden">Loading...</span>
             </Spinner>}
             <ListComments comments={comments} />
-            <AddComment />
+            <AddComment asin={asin} />
         </Container>
     )
 }

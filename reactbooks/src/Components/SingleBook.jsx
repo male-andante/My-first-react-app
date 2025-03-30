@@ -30,7 +30,7 @@ export default function SingleBook({ title, img, price, category, asin }) {
                     </Button>
                 </Card.Body>
             </Card>
-            {/* {selectedBook && <CommentArea asin={asin} />} */}
+            {selectedBook && <CommentArea asin={asin} />}
         </>
     )
 }

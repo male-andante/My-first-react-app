@@ -1,8 +1,11 @@
 import React from 'react'
 
 
-export default function SingleComment() {
+export default function SingleComment({comment, rate}) {
   return (
-    <div>SingleComment</div>
+    <div>
+        <p>{comment}</p>
+        <span>{rate}</span>
+    </div>
   )
 }
