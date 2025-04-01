@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-
+import React from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import SingleBook from './SingleBook'
 import history from '../data/books/history.json'
 
-export default function AllTheBooks() {
-    const [searchQuery, setSearchQuery] = useState('') // Questo è lo stato che devo elevare in APP.
+export default function AllTheBooks({ searchQuery, selectedBook, setSelectedBook }) {
 
     const filterBooks = () => {
         // Se l'input è vuoto, mostra tutti i libri
@@ -14,7 +12,7 @@ export default function AllTheBooks() {
         }
         // Altrimenti filtra i libri in base al titolo
         return history.filter((book) => 
-            book.title.toLowerCase().includes(searchQuery.toLowerCase().trim)
+            book.title.toLowerCase().includes(searchQuery.toLowerCase().trim())
         )
     }
 
@@ -26,18 +24,17 @@ export default function AllTheBooks() {
                         type="text" 
                         placeholder="Filtra per titolo" 
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)} 
+                        onChange={(e) => filterBooks(e.target.value)} 
                     />
                 </Col>
             </Row>
             <Row>
-                {filterBooks().map(({ title, img, price, category, asin }) => (
-                    <Col key={asin} xs={12} sm={6} md={4} lg={3} className="mb-4">
+                {filterBooks().map((book) => (
+                    <Col key={book.asin} xs={12} sm={6} md={4} lg={3} className="mb-4">
                         <SingleBook
-                            title={title}
-                            img={img}
-                            price={price}
-                            category={category}
+                            {...book}
+                            selected={selectedBook === book.asin}
+                            onSelect={(asin) => setSelectedBook(selectedBook === asin ? null : asin)}
                         />
                     </Col>
                 ))}

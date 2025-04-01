@@ -28,12 +28,18 @@ export default function AddComment({ asin }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (!asin) {
+            setError('ASIN del libro mancante')
+            return
+        }
+        
         setIsLoading(true)
         try {
             const response = await fetch(postUrl, {
                 method: 'POST',
                 headers: {
-                    'Authorization': auth
+                    'Authorization': auth,
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     comment,
@@ -43,6 +49,8 @@ export default function AddComment({ asin }) {
             })
             
             if (response.ok) {
+                const data = await response.json()
+                console.log('Commento aggiunto:', data)
                 setComment('')
                 setRate(1)
                 setError(null)
@@ -52,6 +60,7 @@ export default function AddComment({ asin }) {
                 setError(data.message || 'Errore durante l\'invio del commento')
             }
         } catch (error) {
+            console.error('Errore nella fetch:', error)
             setError('Errore durante l\'invio del commento: ' + error.message)
         } finally {
             setIsLoading(false)
