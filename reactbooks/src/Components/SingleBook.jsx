@@ -1,8 +1,11 @@
-import React from 'react'
+//import React, { useNavigate } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import CommentArea from './CommentArea'
 
 export default function SingleBook({ title, img, price, category, asin, selected, onSelect }) {
+
+   // const navigate = useNavigate()
+
     return (
         <>
             <Card
@@ -16,12 +19,16 @@ export default function SingleBook({ title, img, price, category, asin, selected
                     <Card.Subtitle className="mb-2 text-muted">{category}</Card.Subtitle>
                     <Card.Text>ASIN: {asin}</Card.Text>
                     <Card.Text>€{price}</Card.Text>
-                    <Button
-                        variant={selected ? "danger" : "primary"}
-                        className="mt-auto mb-2"
-                    >
-                        {selected ? 'Deseleziona' : 'Leggilo'}
-                    </Button>
+                    <div className='d-flex'>
+                        <Button
+                            variant={selected ? "danger" : "primary"}
+                            className="mt-auto mb-2"
+                        >
+                            {selected ? 'Chiudi' : 'Leggi i commenti'}
+                        </Button>
+                        <Button variant='dark'>Leggilo</Button>
+                    </div>
+
                 </Card.Body>
             </Card>
             {selected && <CommentArea asin={asin} />}

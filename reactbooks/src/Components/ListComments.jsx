@@ -1,5 +1,6 @@
 import React from 'react'
 import SingleComment from './SingleComment'
+import { ListGroup } from 'react-bootstrap'
 
 export default function ListComments(comments) {
   return (
