@@ -1,10 +1,11 @@
 import React from 'react'
 import { Card, Button } from 'react-bootstrap'
-import CommentArea from './CommentArea'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function SingleBook({ title, img, price, category, asin, selectedBook, setSelecredBook }) {
 
-//const navigate = useNavigate()
+const navigate = useNavigate()
 
     return (
         <>
@@ -22,16 +23,15 @@ export default function SingleBook({ title, img, price, category, asin, selected
                     <div className='d-flex'>
                         <Button
                             variant={selectedBook ? "danger" : "primary"}
-                            className="mt-auto mb-2"
+                            className=" w-100 mt-auto mb-2"
                         >
                             {selectedBook ? 'Chiudi' : 'Leggi i commenti'}
                         </Button>
-                        <Button variant='dark'>Leggilo</Button>
+                        <Button variant='dark' className= "w-100 mt-auto mb-2" onClick={() => navigate(`/details/${asin}`)}>Scoprilo</Button>
                     </div>
 
                 </Card.Body>
             </Card>
-            {selectedBook && <CommentArea asin={asin} />}
         </>
     )
 }

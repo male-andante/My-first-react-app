@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
-import { Container, Row, Col, Form } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import SingleBook from './SingleBook'   
 import history from '../data/books/history.json'
 import CommentArea from './CommentArea'
 
 export default function AllTheBooks({ searchQuery }) {
 
-    const [selectedBook, setSelectedBook] = useState(null)
+    const [selectedBook, setSelectedBook] = useState(false)
 
 
     const filterBooks = () => {
