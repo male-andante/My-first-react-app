@@ -9,7 +9,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NotFound from './Pages/NotFound'
 
 function App() {
-  const [selectedBook, setSelectedBook] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
 
   return (
@@ -19,16 +18,7 @@ function App() {
         <main className="flex-grow-1">
           <Welcome />
           <Routes>
-            <Route 
-              path="/" 
-              element={
-                <AllTheBooks 
-                  searchQuery={searchQuery}
-                  selectedBook={selectedBook} 
-                  setSelectedBook={setSelectedBook} 
-                />
-              } 
-            />
+            <Route path="/" element={<AllTheBooks searchQuery={searchQuery}/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

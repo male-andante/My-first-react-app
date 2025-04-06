@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
-import SingleBook from './SingleBook'
+import SingleBook from './SingleBook'   
 import history from '../data/books/history.json'
+import CommentArea from './CommentArea'
 
-export default function AllTheBooks({ searchQuery, selectedBook, setSelectedBook }) {
+export default function AllTheBooks({ searchQuery }) {
+
+    const [selectedBook, setSelectedBook] = useState(null)
+
 
     const filterBooks = () => {
         // Se l'input è vuoto, mostra tutti i libri
@@ -17,27 +21,22 @@ export default function AllTheBooks({ searchQuery, selectedBook, setSelectedBook
     }
 
     return (
-        <Container className='my-3'>   {/* Questo è l'input di ricerca che devo spostare in NAV e per cui devo elevare lo stato i App e passarlo in allthebook come prop*/}
-            <Row className='my-3'>
-                <Col>
-                    <Form.Control 
-                        type="text" 
-                        placeholder="Filtra per titolo" 
-                        value={searchQuery}
-                        onChange={(e) => filterBooks(e.target.value)} 
-                    />
-                </Col>
-            </Row>
+        <Container className='my-3'>   
             <Row>
+                <Col md={8}>
                 {filterBooks().map((book) => (
-                    <Col key={book.asin} xs={12} sm={6} md={4} lg={3} className="mb-4">
+                    <Col key={book.asin} xs={12} md={4} className="mb-4">
                         <SingleBook
-                            {...book}
-                            selected={selectedBook === book.asin}
-                            onSelect={(asin) => setSelectedBook(selectedBook === asin ? null : asin)}
+                            book={book}
+                            selectedBook={selectedBook}
+                            setSelectedBook={setSelectedBook}
                         />
                     </Col>
                 ))}
+                </Col>
+                <Col md ={4}>
+                <CommentArea asin={selectedBook} />
+                </Col>
             </Row>
         </Container>
     )

@@ -2,15 +2,12 @@ import React from 'react'
 import SingleComment from './SingleComment'
 import { ListGroup } from 'react-bootstrap'
 
-export default function ListComments(comments) {
+export default function ListComments(comment) {
   return (
     <ListGroup variant="flush" className="mt-2">
-            {comments.length > 0 ? (
-                comments.map((comment) => (
-                    <SingleComment comment= {comment} key={comment._id}>
-                        <strong>Voto: {comment.rate}/5</strong>
-                        <p className="mb-0">{comment.comment}</p>
-                    </SingleComment>
+            {comment.length > 0 ? (
+                comment.map((comment) => (
+                    <SingleComment comment= {comment} key={comment._id}/>
                 ))
             ) : (
                 <ListGroup.Item>Nessun commento disponibile</ListGroup.Item>
