@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Col, Row, Container, Badge } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import CommentArea from './CommentArea'
-import history from '../data/books/history.json'
+import history from '../Data/books/history.json'
 
 
 export default function BookDetails() {

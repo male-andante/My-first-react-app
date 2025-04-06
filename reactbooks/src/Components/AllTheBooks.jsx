@@ -1,12 +1,12 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import SingleBook from './SingleBook'   
-import history from '../data/books/history.json'
+import history from '../Data/books/history.json'
 import CommentArea from './CommentArea'
 
 export default function AllTheBooks({ searchQuery }) {
+    const [selectedBook, setSelectedBook] = useState(null)
 
-    const [selectedBook, setSelectedBook] = useState(false)
 
 
     const filterBooks = () => {
@@ -23,19 +23,25 @@ export default function AllTheBooks({ searchQuery }) {
     return (
         <Container className='my-3'>   
             <Row>
-                <Col md={8}>
-                {filterBooks().map((book) => (
-                    <Col key={book.asin} xs={12} md={4} className="mb-4">
-                        <SingleBook
-                            book={book}
-                            selectedBook={selectedBook}
-                            setSelectedBook={setSelectedBook}
-                        />
-                    </Col>
-                ))}
+                <Col md={9}>
+                    <Row>
+                        {filterBooks().map((book) => (
+                            <Col key={book.asin} xs={12} sm={6} md={4} lg={3} className="mb-4">
+                                <SingleBook
+                                    title={book.title}
+                                    img={book.img}
+                                    price={book.price}
+                                    category={book.category}
+                                    asin={book.asin}
+                                    selectedBook={selectedBook === book.asin}
+                                    setSelectedBook={setSelectedBook}
+                                />
+                            </Col>
+                        ))}
+                    </Row>
                 </Col>
-                <Col md ={4}>
-                <CommentArea asin={selectedBook} />
+                <Col md ={3}>
+                {selectedBook && <CommentArea asin={selectedBook} />}
                 </Col>
             </Row>
         </Container>
