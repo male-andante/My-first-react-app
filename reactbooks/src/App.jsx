@@ -7,6 +7,8 @@ import Welcome from './Components/Welcome'
 import AllTheBooks from './Components/AllTheBooks'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NotFound from './Pages/NotFound'
+import BookDetails from './Components/BookDetails'
+
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -19,6 +21,7 @@ function App() {
           <Welcome />
           <Routes>
             <Route path="/" element={<AllTheBooks searchQuery={searchQuery}/>} />
+            <Route path="/details/:asin" element={<BookDetails />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
