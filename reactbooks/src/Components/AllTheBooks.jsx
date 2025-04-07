@@ -10,6 +10,8 @@ export default function AllTheBooks({ searchQuery }) {
 
 
     const filterBooks = () => {
+        console.log(history)
+
         // Se l'input è vuoto, mostra tutti i libri
         if (!searchQuery) {
             return history
@@ -28,6 +30,7 @@ export default function AllTheBooks({ searchQuery }) {
                         {filterBooks().map((book) => (
                             <Col key={book.asin} xs={12} sm={6} md={4} lg={3} className="mb-4">
                                 <SingleBook
+                                    data-testid="single-comment"
                                     title={book.title}
                                     img={book.img}
                                     price={book.price}

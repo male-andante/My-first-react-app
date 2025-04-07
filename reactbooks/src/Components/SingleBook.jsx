@@ -13,6 +13,8 @@ export default function SingleBook({ title, img, price, category, asin, selected
                 className="h-100"
                 style={{ border: selectedBook ? '3px solid red' : 'none' }}
                 onClick={() => setSelectedBook(asin)}
+                data-testid="book-card"
+                
             >
                 <Card.Img variant="top" src={img} style={{ height: '300px', objectFit: 'cover' }} />
                 <Card.Body className="d-flex flex-column">

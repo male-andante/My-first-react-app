@@ -35,7 +35,7 @@ export default function SingleComment({comment, rate}) {
       <span>{comment}</span>
       <span className='float-end'>{rate}</span>
     <Button
-      variant='danger' className='ms-2 float-end' onClick={() => deleteComment(comment._id)}>
+      variant='danger' className='ms-2 float-end' data-testid="single-comment" onClick={() => deleteComment(comment._id)}>
       Cancella recensione
     </Button>
   </ListGroup.Item>
