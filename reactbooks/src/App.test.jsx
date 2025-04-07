@@ -54,7 +54,7 @@ describe('Tests sulla renderizzazione dei commenti', () => {
     expect(allTheBookComments).toHaveLength(0);
   });
 
-  test('renders comments clicking on a valid book', async () => {
+  test('Test sul click al libro', async () => {
     render(<App />);
     const allTheBookCards = screen.getAllByTestId('book-card');
     const firstBookCard = allTheBookCards[0];
